@@ -1,0 +1,55 @@
+spring:
+  autoconfigure:
+    exclude:
+     - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+     - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+
+api:
+  version: 0.1
+
+security:
+  headers:
+    cache: false
+
+logging:
+  level:
+    org.springframework.web: INFO
+    com.get_in_the_cloud.api.controller: INFO
+
+server:
+  port: ${SERVER_PORT:8080}
+
+errors:
+  globalIncludeStackTrace: ${SHOW_STACK_TRACE:true}
+
+info:
+  app:
+    environment: ${PACKAGES_ENVIRONMENT:unknown}
+    project: ${PACKAGES_PROJECT:unknown}
+    name: ${PACKAGES_NAME:unknown}
+    version: ${PACKAGES_VERSION:unknown}
+
+health:
+  status:
+    order:
+    - FATAL
+    - DOWN
+    - UNKNOWN
+    - UP
+  disk:
+    threshold: ${HEALTH_DISK_THRESHOLD:262144000}
+
+endpoints:
+  health:
+    sensitive: false
+  info:
+    sensitive: false
+
+
+management:
+  security:
+    enabled: false
+  diskspace:
+    enabled: true
+  db:
+    enabled: true
